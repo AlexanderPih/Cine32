@@ -1,0 +1,53 @@
+.affiche {
+    margin: 0px auto;
+    padding: 0px;
+    width: 250px;
+    height: 350px;
+}
+.col-lg-3, col-md-4, col-xs-12 {
+    padding: 0px;
+}
+.affiche-support {
+    width: 92%;
+    margin: 0px auto;
+    padding: 3px 2px 2px;
+    background-color: #ffffff;
+    border: 1px rgba(118, 118, 118, 0.2) solid;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+.float-right {
+    float: right;
+}
+.support {
+    width: 100%;
+    margin: 0px auto;
+}
+.affiche-support a img {
+    margin-bottom: 10px;
+}
+.youtube{
+    margin-right: 10px;
+}
+@media (max-width:450px) {
+    .affiche {
+        width: 400px;
+        height: 500px;
+    }
+    .space-left {
+        margin-left: 5px;
+    }
+    .youtube {
+        padding: 0px!important;
+        margin-left: 0px;
+    }
+    .float-right-xs {
+        float: right;
+    }
+}
+@media (max-width: 1024px) {
+    .youtube {
+        margin: 0px 10px;
+    }
+}
+

@@ -1,0 +1,54 @@
+html, body {
+    height: 100%;
+
+}
+body {
+    background-color: #e4e4e4;
+    height: 100%;
+}
+
+.modal-small {
+    padding: 0;
+    border: none;
+}
+.modal-close {
+    margin: 10px 10px!important;
+}
+.height {
+    height: 100%;
+}
+.wrap {
+    background-color: #FFFFFF;
+    border-bottom: 4px #a8a8a8 solid;
+    padding: 10px 0px;
+    margin-bottom: 20px;
+}
+.space-left {
+    margin-left: 20px;
+}
+.space-right {
+    margin-right: 20px;
+}
+.space-left-xs {
+    margin-left: 5px;
+}
+.space-right-xs {
+    margin-right: 5px;
+}
+.footer {
+    background-color: #1f1d24;
+    bottom: 0;
+    width: 100%;
+    clear: both;
+    height: 115px;
+}
+.box {
+    border: 1px red dotted;
+}
+.space-top-xs {
+    margin-top: 5px;
+}
+.no-padding {
+    padding: 0px !important;
+}
+

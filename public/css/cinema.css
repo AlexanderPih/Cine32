@@ -1,0 +1,28 @@
+#map {
+    height: 450px;
+    width: 98%;
+    margin: 0 auto;
+}
+a:link {
+    text-decoration: none;
+}
+.info {
+    margin: 30px 20px;
+}
+small {
+    font-size: 11px;
+}
+.red {
+    color: red;
+}
+.badge-red {
+    background-color: red;
+}
+.tarifs {
+    width: 98%;
+    margin: 0 auto;
+}
+.space {
+    margin: 0px;
+    color: white;
+}
