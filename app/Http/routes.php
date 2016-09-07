@@ -139,6 +139,26 @@ Route::get('historique', [
     'uses' => 'AboutController@history',
     'as'   => 'about.history'
 ]);
+Route::get('adminhistorique', [
+    'uses' => 'AboutController@historyindex',
+    'as'   => 'about.historyindex'
+]);
+Route::get('historique/{id}', [
+    'uses' => 'AboutController@historyedit',
+    'as'   => 'about.historyedit'
+]);
+Route::put('historique/{id}', [
+    'uses' => 'AboutController@historyupdate',
+    'as'   => 'history.update'
+]);
+Route::post('historique/create', [
+    'uses' => 'AboutController@historystore',
+    'as'   => 'history.create'
+]);
+Route::delete('historique/{id}', [
+    'uses' => 'AboutController@historydelete',
+    'as'   => 'about.historydelete'
+]);
 
 
 
