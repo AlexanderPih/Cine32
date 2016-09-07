@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShowtimeDatesTable extends Migration
+class CreateScreentwosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,10 @@ class CreateShowtimeDatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('showtimeDates', function (Blueprint $table) {
+        Schema::create('screentwos', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('showtimeDate');
+            $table->string('time');
+            $table->integer('type_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateShowtimeDatesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('showtimeDates');
+        Schema::drop('screentwos');
     }
 }

@@ -83,10 +83,26 @@
 
                 @foreach($showtimes as $showtime)
 
-                    {{ $showtime->date }}: {{ $showtime->screen1 }}, {{ $showtime->screen2 }}, {{ $showtime->screen3 }}<br>
-                    @foreach($showtime->types as $type)
-                        {{ $type->name }}<br>
-                    @endforeach
+                    <div class="col-lg-3">
+                        {{ \Carbon\Carbon::parse($showtime->date)->format('d M Y') }}:
+                    </div>
+
+                    <div class="col-lg-3">
+                        {{ $showtime->screenone->time }}
+
+                        @foreach($showtime->screenone->types as $type)
+                        {{ $type->name }}
+                        @endforeach
+                    </div>
+
+                    <div class="col-lg-3">
+                        {{ $showtime->screentwo->time }}
+                    </div>
+
+                    <div class="col-lg-3">
+                        {{ isset($showtime->screenthree->time) ? $showtime->screenthree->time : "" }}
+                    </div>
+                    <hr>
                 @endforeach
 
             </div>

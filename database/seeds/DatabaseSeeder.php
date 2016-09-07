@@ -21,20 +21,20 @@ class DatabaseSeeder extends Seeder
         $this->call(CinemaFilmTableSeeder::class);
 
         $this->call(ClassificationTableSeeder::class);
-        $this->call(DatesSeeder::class);
 
         $this->call(GenresTableSeeder::class);
         $this->call(FilmGenreTableSeeder::class);
 
-        $this->call(ShowtimesSeeder::class);
         $this->call(TarifsTableSeeder::class);
-        $this->call(TimesSeeder::class);
         $this->call(TypesSeeder::class);
 
         $this->call(HistoryTableSeeder::class);*/
 
         //test:
-        $this->call(ShowtimestestSeeder::class);
+        $this->call(ShowtimesTableSeeder::class);
+        $this->call(ScreenoneTableSeeder::class);
+        $this->call(ScreentwoTableSeeder::class);
+        $this->call(ScreenthreeTableSeeder::class);
 
     }
 }

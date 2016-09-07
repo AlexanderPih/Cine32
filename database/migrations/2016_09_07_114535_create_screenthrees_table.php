@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTimesTable extends Migration
+class CreateScreenthreesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,10 @@ class CreateTimesTable extends Migration
      */
     public function up()
     {
-        Schema::create('times', function (Blueprint $table) {
+        Schema::create('screenthrees', function (Blueprint $table) {
             $table->increments('id');
             $table->string('time');
+            $table->integer('type_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateTimesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('times');
+        Schema::drop('screenthrees');
     }
 }

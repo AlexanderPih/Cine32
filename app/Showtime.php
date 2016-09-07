@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Showtime extends Model
 {
 
-    public function showtimedate()
+    public function screenone()
     {
-        return $this->belongsTo('App\ShowtimeDate');
+        return $this->belongsTo('App\Screenone');
     }
 
-    public function times()
+    public function screentwo()
     {
-        return $this->belongsToMany('App\Time');
+        return $this->belongsTo('App\Screentwo');
     }
 }

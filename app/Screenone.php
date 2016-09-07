@@ -4,9 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Showtimestest extends Model
+class Screenone extends Model
 {
-    protected $table = 'showtimestest';
+
+    public function showtimes()
+    {
+        return $this->hasMany('App\Showtime');
+    }
 
     public function types()
     {

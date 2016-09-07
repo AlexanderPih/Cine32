@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ShowtimestestSeeder extends Seeder
+class ShowtimesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,24 +11,24 @@ class ShowtimestestSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('showtimestest')->insert([
+        DB::table('showtimes')->insert([
             [
                 'id' => 1,
-                'date' => '2016-09-01',
+                'date' => '2016-09-10',
                 'film_id' => 1,
                 'cinema_id' => 1,
-                'screen1' => '14h30',
-                'screen2' => '18h30',
-                'screen3' => '21h'
+                'screenone_id' => 1,
+                'screentwo_id' => 1,
+                'screenthree_id' => 1
             ],
             [
                 'id' => 2,
-                'date' => '2016-09-02',
+                'date' => '2016-09-11',
                 'film_id' => 1,
                 'cinema_id' => 1,
-                'screen1' => null,
-                'screen2' => '18h30',
-                'screen3' => '21h',
+                'screenone_id' => null,
+                'screentwo_id' => 2,
+                'screenthree_id' => 2,
             ]
         ]);
     }

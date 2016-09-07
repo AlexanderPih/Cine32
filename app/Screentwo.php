@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Time extends Model
+class Screentwo extends Model
 {
 
     public function showtimes()
     {
-        return $this->belongsToMany('App\Showtime');
+        return $this->hasMany('App\Showtime');
     }
 
     public function types()
     {
-        return $this->belongsToMany('App\Type');
+        return $this->hasOne('App\Type');
     }
 }

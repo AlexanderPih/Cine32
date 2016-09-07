@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TimesSeeder extends Seeder
+class ScreenthreeTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,12 +11,14 @@ class TimesSeeder extends Seeder
      */
     public function run()
     {
-        db::table('times')->insert([
+        DB::table('screenthrees')->insert([
             [
-                'time' => '15h'
+                'time' => '14h30',
+                'type_id' => 6
             ],
             [
-                'time' => '21h'
+                'time' => '21h',
+                'type_id' => 6
             ]
         ]);
     }

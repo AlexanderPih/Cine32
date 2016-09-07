@@ -78,17 +78,10 @@ class FilmController extends Controller
         if(!$isCinema) {
             $film = Film::where('slug', '=', $slug)->first();
             $film_id = $film->id;
-            // TODO: show all cinemas and the films screenings
-            $showtimes = DB::table('showtimes')
-                ->join('showtimedates', 'showtimedates.id', '=', 'showtimedates_id')
-                ->join('cinemas', 'cinema_id', '=', 'cinemas.id')
-                ->join('showtimes_times', 'showtimes_times.showtimes_id', '=', 'showtimes.id')
-                ->join('times', 'times.id', '=', 'showtimes_times.times_id')
-                ->join('times_types', 'times_types.times_id', '=', 'times.id')
-                ->join('types', 'times_types.types_id', '=', 'types.id')
-                ->where('showtimes.film_id', '=', $film_id)
-                ->select('cinemas.name as cinemaName', 'showtimeDate', 'times.time as time', 'types.name as type')
-                ->get();
+
+            $showtimes = Showtime::where('id', '=', $film_id)->get();
+
+            // TODO: get cinema name
 
         }
         // $slug is cinema, show film with given cinemas screenings:
@@ -100,24 +93,8 @@ class FilmController extends Controller
             $cinema = Cinema::where('slug', '=', $slug)->first();
             $cinema_id = $cinema->id;
 
-            $showtimes = Showtimestest::where('film_id', '=', $film_id)->where('cinema_id', '=', $cinema_id)->get();
+            $showtimes = Showtime::where('film_id', '=', $film_id)->where('cinema_id', '=', $cinema_id)->get();
 
-
-
-
-            /*$showtimes = DB::table('showtimes')
-                ->join('showtimedates', 'showtimedates.id', '=', 'showtimedates_id')
-                ->join('cinemas', 'cinema_id', '=', 'cinemas.id')
-                ->join('showtimes_times', 'showtimes_times.showtimes_id', '=', 'showtimes.id')
-                ->join('times', 'times.id', '=', 'showtimes_times.times_id')
-                ->join('times_types', 'times_types.times_id', '=', 'times.id')
-                ->join('types', 'times_types.types_id', '=', 'types.id')
-                ->where('showtimes.cinema_id', '=', $cinema_id)
-                ->where('showtimes.film_id', '=', $film_id)
-                ->select('cinemas.name as cinemaName', 'showtimeDate', 'times.time as time', 'types.name as type')
-                ->get();*/
-
-            //dd($showtimes);
         }
 
 

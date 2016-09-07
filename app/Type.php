@@ -7,13 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
 
-    public function times()
+    public function screenones()
     {
-        return $this->belongsToMany('App\Time');
+        return $this->belongsToMany('App\Screenone');
     }
 
-    public function showtimestests()
+    public function screentwos()
     {
-        return $this->belongsToMany('App\Showtimetest');
+        return $this->hasOne('App\Screentwo');
+    }
+
+    public function screenthrees()
+    {
+        return $this->hasOne('App\Screenthree');
     }
 }
