@@ -135,17 +135,25 @@ Route::get('/association', [
     'uses' => 'AboutController@association',
     'as'   => 'about.association'
 ]);
+Route::get('member', [
+    'uses' => 'AboutController@member',
+    'as'   => 'about.member'
+]);
+Route::post('member', [
+    'uses' => 'AboutController@memberstore',
+    'as'   => 'member.store'
+]);
 Route::get('historique', [
     'uses' => 'AboutController@history',
     'as'   => 'about.history'
 ]);
 Route::get('adminhistorique', [
     'uses' => 'AboutController@historyindex',
-    'as'   => 'about.historyindex'
+    'as'   => 'history.index'
 ]);
 Route::get('historique/{id}', [
     'uses' => 'AboutController@historyedit',
-    'as'   => 'about.historyedit'
+    'as'   => 'history.edit'
 ]);
 Route::put('historique/{id}', [
     'uses' => 'AboutController@historyupdate',
@@ -157,7 +165,7 @@ Route::post('historique/create', [
 ]);
 Route::delete('historique/{id}', [
     'uses' => 'AboutController@historydelete',
-    'as'   => 'about.historydelete'
+    'as'   => 'history.delete'
 ]);
 
 
@@ -177,7 +185,7 @@ Route::get('adminfilms', [
 ]);
 // cinemas
 Route::get('admincinemas', [
-    'uses' => 'AdminController@cinemas',
+    'uses' => 'CinemaController@admincinemas',
     'as'   => 'admin.cinemas'
 ]);
 Route::get('admingenres', [

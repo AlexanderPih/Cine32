@@ -15,9 +15,12 @@ use App\Film;
 use App\Cinema;
 use DB;
 use Session;
+use App\Member;
 
 class FilmController extends Controller
 {
+
+    private $count;
 
     /**
      * Create, store and update only for authenticated users.
@@ -26,6 +29,8 @@ class FilmController extends Controller
     public function __construct()
     {
         //$this->middleware('auth', ['except' => ['index', 'show']]);
+
+        $this->count = Member::getCount();
     }
 
     /**
@@ -39,6 +44,7 @@ class FilmController extends Controller
         $genres = Genre::all();
 
 
+
         return view('films.index')
             ->with('films', $films)
             ->with('cinemas', $cinemas)
@@ -49,7 +55,9 @@ class FilmController extends Controller
     {
         $films = Film::all();
 
-        return view('admin.filmsindex')->with('films', $films);
+        return view('admin.filmsindex')
+            ->with('films', $films)
+            ->with('count', $this->count);
     }
 
     /**
@@ -117,7 +125,8 @@ class FilmController extends Controller
             ->with('classifications', $classifications)
             ->with('genres', $genres)
             ->with('actors', $actors)
-            ->with('directors', $directors);
+            ->with('directors', $directors)
+            ->with('count', $this->count);;
     }
 
     /**
@@ -161,6 +170,10 @@ class FilmController extends Controller
         $film->genres()->sync($request->genre_id, false);
         $film->actors()->sync($request->actor_id, false);
         $film->directors()->sync($request->director_id, false);
+
+        Session::flash('success', 'Le Film '. $film->title . ' a été enregistré.');
+
+        return redirect()->route('adminfilms.index');
     }
 
     /**
@@ -181,7 +194,8 @@ class FilmController extends Controller
             ->with('directors', $directors)
             ->with('actors', $actors)
             ->with('classifications', $classifications)
-            ->with('genres', $genres);
+            ->with('genres', $genres)
+            ->with('count', $this->count);;
     }
 
     /**

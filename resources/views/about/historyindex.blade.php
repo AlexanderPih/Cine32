@@ -78,11 +78,11 @@
                                     <td class="col-md-3">
                                         <div class="col-md-4">
                                         <button class="btn btn-default">
-                                            <a href="{{ route('about.historyedit', $history->id) }}"><span class="glyphicon glyphicon-edit"></span> Modifier</a>
+                                            <a href="{{ route('history.edit', $history->id) }}"><span class="glyphicon glyphicon-edit"></span> Modifier</a>
                                         </button>
                                         </div>
                                         <div class="col-md-8">
-                                        {!! Form::open(['route' => ['about.historydelete', $history->id], 'method' => 'DELETE']) !!}
+                                        {!! Form::open(['route' => ['history.delete', $history->id], 'method' => 'DELETE']) !!}
 
                                         {!! Form::button('<i class="glyphicon glyphicon-trash"> Supprimer</i>', ['type' => 'submit', 'class' => 'btn btn-default right']) !!}
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Member;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,9 +15,13 @@ use Image;
 class CinemaController extends Controller
 {
 
+    private $count;
+
     public function __construct()
     {
         //$this->middleware('auth', ['except' => ['index', 'show']]);
+        
+        $this->count = Member::getCount();
     }
     /**
      * Show all cinemas on index page
@@ -27,7 +32,17 @@ class CinemaController extends Controller
     {
         $cinemas = Cinema::all();
 
-        return view('cinemas.index')->with('cinemas', $cinemas);
+        return view('cinemas.index')
+            ->with('cinemas', $cinemas);
+    }
+
+    public function admincinemas()
+    {
+        $cinemas = Cinema::all();
+
+        return view('admin.cinemas')
+            ->with('cinemas', $cinemas)
+            ->with('count', $this->count);
     }
 
     /**
@@ -41,14 +56,18 @@ class CinemaController extends Controller
         $cinema = Cinema::where('slug', '=', $slug)->first();
         $tarifs = Tarif::all();
 
-        return view('cinemas.show')->with('cinema', $cinema)->with('tarifs', $tarifs);
+        return view('cinemas.show')
+            ->with('cinema', $cinema)
+            ->with('tarifs', $tarifs);
     }
 
     public function edit($id)
     {
         $cinema = Cinema::find($id);
 
-        return view('cinemas.edit')->with('cinema', $cinema);
+        return view('cinemas.edit')
+            ->with('cinema', $cinema)
+            ->with('count', $this->count);
     }
 
     public function update(Request $request, $id)

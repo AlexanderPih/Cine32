@@ -28,13 +28,15 @@ class DatabaseSeeder extends Seeder
         $this->call(TarifsTableSeeder::class);
         $this->call(TypesSeeder::class);
 
-        $this->call(HistoryTableSeeder::class);*/
+        $this->call(HistoryTableSeeder::class);
 
         //test:
         $this->call(ShowtimesTableSeeder::class);
         $this->call(ScreenoneTableSeeder::class);
         $this->call(ScreentwoTableSeeder::class);
-        $this->call(ScreenthreeTableSeeder::class);
+        $this->call(ScreenthreeTableSeeder::class);*/
+
+        $this->call(MembersTableSeeder::class);
 
     }
 }

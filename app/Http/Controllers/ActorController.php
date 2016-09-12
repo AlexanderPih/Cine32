@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Actor;
+use App\Member;
 use Illuminate\Http\Request;
 use Session;
 use App\Http\Requests;
 
 class ActorController extends Controller
 {
+    private $count;
+
+    public function __construct()
+    {
+        $this->count = Member::getCount();
+    }
 
     /**
      * Index page with all actors.
@@ -18,7 +25,9 @@ class ActorController extends Controller
     {
         $actors = Actor::orderBy('name')->get();
 
-        return view('actor.index')->with('actors', $actors);
+        return view('actor.index')
+            ->with('actors', $actors)
+            ->with('count', $this->count);;
     }
 
     /**
@@ -30,7 +39,9 @@ class ActorController extends Controller
     {
         $actor = Actor::find($id);
 
-        return view('actor.edit')->with('actor', $actor);
+        return view('actor.edit')
+            ->with('actor', $actor)
+            ->with('count', $this->count);;
     }
 
     /**
@@ -67,8 +78,8 @@ class ActorController extends Controller
         ]);
 
         $actor = Actor::find($id);
-        $actor->name = $request->name;
 
+        $actor->name = $request->name;
         $actor->save();
 
         Session::flash('success', 'Modification enregistrée');

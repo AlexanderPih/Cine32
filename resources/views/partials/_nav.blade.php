@@ -46,7 +46,7 @@
                         <li><a href="{{ route('about.history') }}">Historique</a></li>
                         <li><a href="#">Equipe</a></li>
                         <li><a href="#">Informations</a></li>
-                        <li><a href="#">Adherer</a></li>
+                        <li><a href="{{ route('about.member') }}">Adherer</a></li>
                     </ul>
                 </li>
             </ul>

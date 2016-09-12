@@ -93,7 +93,12 @@ body {
 .table tbody tr td a {
     margin-left: 10px;
 }
-
+.count {
+    position: absolute;
+    margin-top: -25px;
+    margin-left: 15px;
+    padding-top: 4px;
+}
 @media (min-width: 768px) {
     .main {
         padding-right: 40px;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Member;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -12,6 +13,12 @@ use Session;
 
 class GenreController extends Controller
 {
+    private $count;
+
+    public function __construct()
+    {
+        $this->count = Member::getCount();
+    }
 
     /**
      * Show all genres.
@@ -21,21 +28,26 @@ class GenreController extends Controller
     {
         $genres = Genre::all();
 
-        return view('genre.index')->with('genres', $genres);
+        return view('genre.index')
+            ->with('genres', $genres);
     }
 
     public function genres()
     {
         $genres = Genre::all();
 
-        return view('admin.genres')->with('genres', $genres);
+        return view('admin.genres')
+            ->with('genres', $genres)
+            ->with('count', $this->count);;
     }
 
     public function edit($id)
     {
         $genre = Genre::find($id);
 
-        return view('genres.edit')->with('genre', $genre);
+        return view('genres.edit')
+            ->with('genre', $genre)
+            ->with('count', $this->count);
     }
 
     public function update(Request $request, $id)

@@ -36,7 +36,7 @@
                         <!-- Form input -->
                         <div class="form-group">
                             {!! Form::submit('Enregistrer', ['class' => 'btn btn-primary']) !!}
-                            <a href="{{ route('about.historyindex') }}"><span class="btn btn-warning">Annuler</span></a>
+                            <a href="{{ route('history.index') }}"><span class="btn btn-warning">Annuler</span></a>
                         </div>
                     </div>
                 </div>
