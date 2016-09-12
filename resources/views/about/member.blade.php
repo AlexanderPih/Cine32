@@ -25,10 +25,12 @@
                     <p>
                         Cela vous coûte <strong>20 € (35 € pour un couple) par année civile et vous permet d’avoir des places à un tarif préférentiel ainsi que de participer à deux soirées gratuites dans l’année</strong> : la première a lieu dans le cadre du festival Zoom arrière de la Cinémathèque de Toulouse, et en juin lors de l’Assemblée Générale autour d’une avant première. Ainsi, vous nous apporterez votre appui et vos propositions.
                     </p>
-
+                    <hr>
             </div>
 
                 <div class="col-lg-8 col-lg-offset-2">
+
+                    @include('partials._messages')
 
                     {!! Form::open(['route' => 'member.store', 'id' => 'form']) !!}
 

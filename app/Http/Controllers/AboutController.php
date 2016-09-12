@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\History;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Session;
 use App\Http\Requests;
 use App\Member;
+use GuzzleHttp\Client;
 
 class AboutController extends Controller
 {
@@ -33,15 +35,63 @@ class AboutController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'firstname' => 'required',
-            'address' => 'requried',
+            'address' => 'required',
             'city' => 'required',
-            'postal' => 'required|regex:\^[0-9]{5,5}$',
-            'phone' => 'required|regex:\^(\d\d\s){4}(\d\d)$',
+            'postal' => 'required',
+            'phone' => 'required',
             'email' => 'required|email',
             'profession' => 'required',
             'birthday' => 'sometimes|date'
         ]);
 
+        //regex:\^[0-9]{5,5}$\
+        //|regex:\^(\d\d\s){4}(\d\d)$\
+
+
+        $token = $request->input('g-recaptcha-response');
+
+        if($token) {
+            $client = new Client();
+            $response = $client->post('https://www.google.com/recaptcha/api/siteverify', [
+                'form_params'  => [
+                    'secret'   => '6Len9ikTAAAAAIiBjz34bY8fzMayUl9LzrMYgyVx',
+                    'response' => $token
+                ]
+            ]);
+            $result = json_decode($response->getBody()->getContents());
+
+            if($result->success) {
+                $member = new Member();
+
+                $member->name = $request->name;
+                $member->firstname = $request->firstname;
+                $member->address = $request->address;
+                $member->city = $request->city;
+                $member->postal = $request->postal;
+                $member->phone = $request->phone;
+                $member->email = $request->email;
+                $member->profession = $request->profession;
+
+                if($member->birthday) {
+                    $birthday = Carbon::parse($request->birthday)->format('Y-m-d');
+                    $member->birthday = $birthday;
+                } else {
+                    $member->birthday = 0;
+                }
+
+                $member->save();
+
+                Session::flash('success', 'Votre demade d\'adhérer a été envoyée!');
+
+                return redirect()->route('about.member');
+            } else {
+                Session::flash('error', 'Echec de l\'envoi du formulaire. Merci de reessayer dans quelques instants');
+
+                return redirect()->route('about.member');
+            }
+        } else {
+            return redirect()->route('about.member');
+        }
 
     }
 
