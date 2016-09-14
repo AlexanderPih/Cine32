@@ -20,16 +20,29 @@ class AboutController extends Controller
         $this->count = Member::getCount();
     }
 
+    /**
+     * View for the association page.
+     * @return mixed
+     */
     public function association()
     {
         return view('about.association');
     }
 
+    /**
+     * View for the member form on public side.
+     * @return mixed
+     */
     public function member()
     {
-        return view('about.member');
+        return view('member.member');
     }
 
+    /**
+     * Store the member request in DB.
+     * @param Request $request
+     * @return mixed
+     */
     public function memberstore(Request $request)
     {
         $this->validate($request, [
@@ -47,7 +60,7 @@ class AboutController extends Controller
         //regex:\^[0-9]{5,5}$\
         //|regex:\^(\d\d\s){4}(\d\d)$\
 
-
+        // google recaptcha
         $token = $request->input('g-recaptcha-response');
 
         if($token) {
@@ -72,16 +85,16 @@ class AboutController extends Controller
                 $member->email = $request->email;
                 $member->profession = $request->profession;
 
-                if($member->birthday) {
-                    $birthday = Carbon::parse($request->birthday)->format('Y-m-d');
-                    $member->birthday = $birthday;
+
+                if($request->birthday) {
+                    $member->birthday = Carbon::parse($request->birthday)->format('Y-m-d');
                 } else {
                     $member->birthday = 0;
                 }
 
                 $member->save();
 
-                Session::flash('success', 'Votre demade d\'adhérer a été envoyée!');
+                Session::flash('success', 'Votre demande d\'adhérer a été envoyée!');
 
                 return redirect()->route('about.member');
             } else {
@@ -95,6 +108,10 @@ class AboutController extends Controller
 
     }
 
+    /**
+     * View for the History page public side.
+     * @return mixed
+     */
     public function history()
     {
         $histories = History::orderBy('year', 'desc')->get();
@@ -104,6 +121,10 @@ class AboutController extends Controller
             ->with('histories', $histories);
     }
 
+    /**
+     * View for the history index admin side.
+     * @return mixed
+     */
     public function historyindex()
     {
         $histories = History::orderBy('year', 'desc')->get();
@@ -113,6 +134,11 @@ class AboutController extends Controller
             ->with('count', $this->count);
     }
 
+    /**
+     * Edit a history entry.
+     * @param $id
+     * @return mixed
+     */
     public function historyedit($id)
     {
         $history = History::find($id);
@@ -122,6 +148,11 @@ class AboutController extends Controller
             ->with('count', $this->count);
     }
 
+    /**
+     * Save history entry to DB.
+     * @param Request $request
+     * @return mixed
+     */
     public function historystore(Request $request)
     {
         $this->validate($request, [
@@ -141,6 +172,12 @@ class AboutController extends Controller
         return redirect()->route('history.index');
     }
 
+    /**
+     * Update a history entry.
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
     public function historyupdate(Request $request, $id)
     {
         $this->validate($request, [
@@ -160,6 +197,11 @@ class AboutController extends Controller
         return redirect()->route('history.index');
     }
 
+    /**
+     * Delete a history entry.
+     * @param $id
+     * @return mixed
+     */
     public function historydelete($id)
     {
         $history = History::find($id);

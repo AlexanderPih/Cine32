@@ -86,7 +86,7 @@
 
                     <!-- Birthday Form Input -->
                     <div class="form-group">
-                        {!! Form::label('birthday', 'De plus si vous souhaitez adhérer à la Ligue de l’Enseignement 32 (gratuitement), merci de préciser votre date de naissance:') !!}
+                        <label for="birthday">De plus si vous souhaitez adhérer à la <a href="http://www.ligue32.org" target="_blank">Ligue de l’Enseignement 32</a> (gratuitement), merci de préciser votre date de naissance:</label>
                         {!! Form::text('birthday', null, ['class' => 'form-control']) !!}
                     </div>
 

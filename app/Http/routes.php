@@ -168,7 +168,23 @@ Route::delete('historique/{id}', [
     'as'   => 'history.delete'
 ]);
 
-
+// Member
+Route::get('members', [
+    'uses' => 'MemberController@index',
+    'as'   => 'member.index'
+]);
+Route::get('members/new', [
+    'uses' => 'MemberController@newMembers',
+    'as'   => 'member.new'
+]);
+Route::put('member/{id}', [
+    'uses' => 'MemberController@update',
+    'as'   => 'member.update'
+]);
+Route::get('member/{id}', [
+    'uses' => 'MemberController@show',
+    'as'   => 'member.show'
+]);
 
 
 

@@ -12,7 +12,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#">
+                    <a href="{{ route('member.new') }}">
                         <span class="glyphicon glyphicon-user"></span>
                         <span class="label label-warning count">{{ $count }}</span>
                     </a>
