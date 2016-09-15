@@ -130,6 +130,32 @@ Route::put('cinema/{id}', [
     'as'   => 'cinemas.update'
 ]);
 
+// Animations
+Route::get('animations', [
+    'uses' => 'AnimationController@index',
+    'as'   => 'animation.index'
+]);
+Route::get('adminanimations', [
+    'uses' => 'AnimationController@adminIndex',
+    'as'   => 'animation.adminindex'
+]);
+Route::get('animation/{id}', [
+    'uses' => 'AnimationController@show',
+    'as'   => 'animation.show'
+]);
+Route::get('animations/create', [
+    'uses' => 'AnimationController@create',
+    'as'   => 'animation.create'
+]);
+Route::post('animation', [
+    'uses' => 'AnimationController@store',
+    'as'   => 'animation.store'
+]);
+Route::put('animation/{id}', [
+    'uses' => 'AnimationController@update',
+    'as'   => 'animation.update'
+]);
+
 // A Propos
 Route::get('/association', [
     'uses' => 'AboutController@association',

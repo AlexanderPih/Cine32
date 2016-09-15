@@ -15,8 +15,8 @@
         <li><a href="{{ route('admin.cinemas') }}">Cinemas</a></li>
         <li><a href="#collapse-animation" data-toggle="collapse" area-control="collapse-animation">Animation</a>
             <ul class="collapse collapseabel" id="collapse-animation">
-                <li><a href="#">Nouvelle Animation</a></li>
-                <li><a href="#">Modifier Animation</a></li>
+                <li><a href="{{ route('animation.adminindex') }}">Animations</a></li>
+                <li><a href="{{ route('animation.create') }}">Nouvelle Animation</a></li>
             </ul>
         </li>
         <li><a href="#collapse-festival" data-toggle="collapse" area-control="collapse-festival">Festival</a>

@@ -34,9 +34,11 @@ class DatabaseSeeder extends Seeder
         $this->call(ShowtimesTableSeeder::class);
         $this->call(ScreenoneTableSeeder::class);
         $this->call(ScreentwoTableSeeder::class);
-        $this->call(ScreenthreeTableSeeder::class);*/
+        $this->call(ScreenthreeTableSeeder::class);
 
-        $this->call(MembersTableSeeder::class);
+        $this->call(MembersTableSeeder::class);*/
+
+        $this->call(AnimationsTableSeeder::class);
 
     }
 }

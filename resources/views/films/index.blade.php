@@ -58,7 +58,7 @@
         <!-- show films -->
         @foreach($films as $film)
 
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-3 thumb">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 thumb">
                 <div class="support">
                     <div class="affiche-support">
                         <a href="{{ route('films.show', isset($cinemaName) ? strtolower($cinemaName) .'/'. $film->slug : $film->slug) }}">
