@@ -156,8 +156,26 @@ Route::put('animation/{id}', [
     'as'   => 'animation.update'
 ]);
 
-// A Propos
-Route::get('/association', [
+// Festivals
+Route::get('festivals', [
+    'uses' => 'FestivalController@index',
+    'as'   => 'festival.index'
+]);
+Route::get('festivals/create', [
+    'uses' => 'FestivalController@create',
+    'as'   => 'festival.create'
+]);
+Route::get('festivals/{slug}', [
+    'uses' => 'FestivalController@show',
+    'as'   => 'festival.show'
+]);
+Route::post('festivals', [
+    'uses' => 'FestivalController@store',
+    'as'   => 'festival.store'
+]);
+
+// About
+Route::get('association', [
     'uses' => 'AboutController@association',
     'as'   => 'about.association'
 ]);
@@ -192,6 +210,12 @@ Route::post('historique/create', [
 Route::delete('historique/{id}', [
     'uses' => 'AboutController@historydelete',
     'as'   => 'history.delete'
+]);
+
+// Bistrot
+Route::get('bistrot', [
+    'uses' => 'BistrotController@index',
+    'as'   => 'bistrot.index'
 ]);
 
 // Member

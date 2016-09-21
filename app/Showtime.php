@@ -16,4 +16,9 @@ class Showtime extends Model
     {
         return $this->belongsTo('App\Screentwo');
     }
+
+    public function screenthree()
+    {
+        return $this->belongsTo('App\Screenthree');
+    }
 }

@@ -17,7 +17,7 @@
                 <li class="{{ Request::is('films') ? "active" : "" }}"><a href="/films">Films</a></li>
                 <li class="{{ Request::is('cinemas') ? "active" : "" }}"><a href="/cinemas">Cinemas</a></li>
                 <li class="{{ Request::is('animations') ? "active" : "" }}"><a href="/animations">Animations</a></li>
-                <li class="{{ Request::is('festival') ? "active" : "" }}"><a href="/festival">Festival</a></li>
+                <li class="{{ Request::is('festivals') ? "active" : "" }}"><a href="/festivals">Festival</a></li>
                 <li class="dropdown">
                     <li class="{{ Request::is('pedagogique') ? "active" : "" }}"> <!-- Todo: test if works -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pédagogique <span class="caret"></span></a>

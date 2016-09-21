@@ -21,7 +21,7 @@
         </li>
         <li><a href="#collapse-festival" data-toggle="collapse" area-control="collapse-festival">Festival</a>
             <ul class="collapse collapseabel" id="collapse-festival">
-                <li><a href="#">Nouveau Festival</a></li>
+                <li><a href="{{ route('festival.create') }}">Nouveau Festival</a></li>
                 <li><a href="#">Modifier Festival</a></li>
             </ul>
         </li>

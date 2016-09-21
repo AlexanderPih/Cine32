@@ -15,9 +15,24 @@
     border: 1px rgba(118, 118, 118, 0.2) solid;
     border-radius: 4px;
     margin-bottom: 20px;
+    border: 1px solid #ffffff;
+    -webkit-transition:border .2s ease-in-out;
+    -o-transition:border .2s ease-in-out;
+    transition:border .2s ease-in-out;
 }
 .float-right {
     float: right;
+}
+.affiche-support.active, .affiche-support:focus, .affiche-support:hover {
+    border-color:#337ab7;
+}
+.screen {
+    min-height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 3px;
 }
 .support {
     width: 100%;

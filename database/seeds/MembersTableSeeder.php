@@ -23,7 +23,7 @@ class MembersTableSeeder extends Seeder
                 'firstname' => $faker->firstName,
                 'address' => $faker->streetAddress,
                 'city' => $faker->city,
-                'postal' => $faker->postCode,
+                'postal' => $faker->postcode,
                 'phone' => $faker->phoneNumber,
                 'email' => $faker->email,
                 'profession' => $faker->jobTitle,

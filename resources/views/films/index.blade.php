@@ -9,7 +9,6 @@
 @section('content')
 
     <!-- select forms -->
-    <div class="row">
         <div class="col-sm-12 col-lg-12">
 
             <div class="col-xs-3 col-sm-2 col-md-1">
@@ -53,12 +52,11 @@
                 </div>
             </div>
         </div>
-    </div>
 
+    <div class="col-sm-12 col-lg-12">
         <!-- show films -->
         @foreach($films as $film)
-
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 thumb">
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3">
                 <div class="support">
                     <div class="affiche-support">
                         <a href="{{ route('films.show', isset($cinemaName) ? strtolower($cinemaName) .'/'. $film->slug : $film->slug) }}">
@@ -70,7 +68,6 @@
                     </div>
                 </div>
             </div>
-
         @endforeach
-
+    </div>
 @stop

@@ -8,6 +8,7 @@
 
 @section('content')
 
+    <div class="col-sm-12 col-lg-12">
     @foreach($cinemas as $cinema)
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 thumb">
             <div class="support">
@@ -22,6 +23,6 @@
             </div>
         </div>
     @endforeach
-
+    </div>
 
 @stop

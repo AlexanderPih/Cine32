@@ -82,27 +82,37 @@
             <div class="col-lg-12">
 
                 @foreach($showtimes as $showtime)
+                    <div class="col-lg-12">
+                        <div class="screen">
+                            <div class="col-lg-3">
+                            {{ \Carbon\Carbon::parse($showtime->date)->format('d M Y') }}:
+                            </div>
 
-                    <div class="col-lg-3">
-                        {{ \Carbon\Carbon::parse($showtime->date)->format('d M Y') }}:
+                            <div class="col-lg-3">
+                                {{ isset($showtime->screenone->time) ? $showtime->screenone->time : "" }}
+
+                                @foreach($showtime->screenone->types as $type)
+                                {{ $type->name }}
+                                @endforeach
+                            </div>
+
+                            <div class="col-lg-3">
+                                {{ isset($showtime->screentwo->time) ? $showtime->screentwo->time : "" }}
+
+                                {{--@foreach($showtime->screentwo->types as $type)
+                                    {{ $type->name }}
+                                @endforeach--}}
+                            </div>
+
+                            <div class="col-lg-3">
+                                {{ isset($showtime->screenthree->time) ? $showtime->screenthree->time : "" }}
+
+                                {{--@foreach($showtime->screenthree->types as $type)
+                                    {{ $type->name }}
+                                @endforeach--}}
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="col-lg-3">
-                        {{ $showtime->screenone->time }}
-
-                        @foreach($showtime->screenone->types as $type)
-                        {{ $type->name }}
-                        @endforeach
-                    </div>
-
-                    <div class="col-lg-3">
-                        {{ $showtime->screentwo->time }}
-                    </div>
-
-                    <div class="col-lg-3">
-                        {{ isset($showtime->screenthree->time) ? $showtime->screenthree->time : "" }}
-                    </div>
-                    <hr>
                 @endforeach
 
             </div>

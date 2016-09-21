@@ -20,6 +20,11 @@ class AnimationController extends Controller
         $this->count = Member::getCount();
     }
 
+    /**
+     * Show all the animations.
+     *
+     * @return mixed
+     */
     public function index()
     {
         $animations = Animation::all();
@@ -28,6 +33,11 @@ class AnimationController extends Controller
             ->with('animations', $animations);
     }
 
+    /**
+     * Index page on admin side.
+     *
+     * @return mixed
+     */
     public function adminIndex()
     {
         $animations = Animation::all();
@@ -37,6 +47,12 @@ class AnimationController extends Controller
             ->with('count', $this->count);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param $id
+     * @return mixed
+     */
     public function show($id)
     {
         $animation = Animation::findOrFail($id);
@@ -45,12 +61,22 @@ class AnimationController extends Controller
             ->with('animation', $animation);
     }
 
+    /**
+     * Show the creation form
+     *
+     * @return mixed
+     */
     public function create()
     {
         return view('animations.create')
             ->with('count', $this->count);
     }
 
+    /**
+     * Validate and store.
+     *
+     * @param Request $request
+     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -80,6 +106,6 @@ class AnimationController extends Controller
 
         Session::flash('success', 'Animation enregistrée!');
 
-        //return redirect()->route('animation.index');
+        return redirect()->route('animation.index');
     }
 }
