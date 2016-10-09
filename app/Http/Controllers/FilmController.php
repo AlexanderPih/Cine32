@@ -43,8 +43,6 @@ class FilmController extends Controller
         $cinemas = Cinema::all();
         $genres = Genre::all();
 
-
-
         return view('films.index')
             ->with('films', $films)
             ->with('cinemas', $cinemas)
@@ -90,6 +88,7 @@ class FilmController extends Controller
             $showtimes = Showtime::where('id', '=', $film_id)->get();
 
             // TODO: get cinema name
+            $cinema = Cinema::lists('name')->where('slug', '=', $slug);
 
         }
         // $slug is cinema, show film with given cinemas screenings:
@@ -107,7 +106,9 @@ class FilmController extends Controller
 
 
 
-        return view('films.show')->with('film', $film)->with('showtimes', $showtimes);
+        return view('films.show')
+            ->with('film', $film)
+            ->with('showtimes', $showtimes);
     }
 
     /**
@@ -126,7 +127,7 @@ class FilmController extends Controller
             ->with('genres', $genres)
             ->with('actors', $actors)
             ->with('directors', $directors)
-            ->with('count', $this->count);;
+            ->with('count', $this->count);
     }
 
     /**
@@ -266,6 +267,88 @@ class FilmController extends Controller
     }
 
     /**
+     * Filter the selection of films.
+     * @param $slug
+     * @param $name
+     * @return mixed
+     */
+    public function filter($slug, $name = "")
+    {
+
+        // cinema is selected first, then genre or the other way round:
+        if ($this->isCinema($slug) && !empty($name)) {
+
+            $films = Film::filmsCinemaGenre($slug, $name);
+
+            // get the names for display on filter
+            $genreName = $name;
+            $cinemaName = $this->getCinemaName($slug);
+
+
+        // $slug is given, $name is empty, $slug can be cinema or genre
+        } elseif ($slug && empty($name)) {
+
+            // if $slag is genre: genre filter
+            if ($this->isGenre($slug)) {
+
+                $id = Film::getGenreId($slug);
+                $films = Film::filmsGenre($id);
+
+                // only genre name is required
+                $genreName = $slug;
+                $cinemaName = null;
+
+                // $slug is cinema: cinema filter
+            } else {
+                $films = Film::filmsCinema($slug);
+
+                // only cinema name is required
+                $cinemaName = $this->getCinemaName($slug);
+                $genreName = null;
+            }
+        }
+
+
+        // get all cinemas and genres for the filter section
+        $cinemas = Cinema::all();
+        $genres = Genre::all();
+        return view('films.index')
+            ->with('films', $films)
+            ->with('cinemas', $cinemas)
+            ->with('genres', $genres)
+            ->with('genreName', $genreName)
+            ->with('cinemaName', $cinemaName);
+    }
+
+
+    /**
+     * Get genre name for display on filter in view
+     * @param $name
+     * @return mixed
+     */
+    private function getGenreName($name)
+    {
+        $genreName = Genre::where('name', '=', $name)->select('name')->get();
+        $genreName = $genreName[0]->name;
+
+        return $genreName;
+    }
+
+
+    /**
+     * Get cinema name for display on filter in view
+     * @param $slug
+     * @return mixed
+     */
+    private function getCinemaName($slug)
+    {
+        $cinemaName = Cinema::where('slug', '=', $slug)->select('name')->get();
+        $cinemaName = $cinemaName[0]->name;
+
+        return $cinemaName;
+    }
+
+    /**
      * Checks if $search (which is a slug) corresponds to a cinema slug.
      *
      * @param $search
@@ -274,6 +357,16 @@ class FilmController extends Controller
     private function isCinema($search)
     {
         $objects = Cinema::lists('slug');
+        $array = $objects->toArray();
+
+        $result = in_array($search, $array);
+
+        return $result;
+    }
+
+    private function isGenre($search)
+    {
+        $objects = Genre::lists('name');
         $array = $objects->toArray();
 
         $result = in_array($search, $array);

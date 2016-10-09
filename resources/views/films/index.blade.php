@@ -25,7 +25,7 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             @foreach ($cinemas as $cinema)
-                                <li><a href="{{ route('cinema.genre', isset($genreName) ? $cinema->slug .'/'. $genreId : $cinema->slug) }}">{{ $cinema->name }}</a></li>
+                                <li><a href="{{ route('films.filter', isset($genreName) ? $cinema->slug .'/'. $genreName : $cinema->slug) }}">{{ $cinema->name }}</a></li>
                             @endforeach
                         </ul>
                     </div>
@@ -46,7 +46,7 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 
                         @foreach ($genres as $genre)
-                            <li><a href="{{ route('cinema.genre', isset($cinemaName) ? strtolower($cinemaName) .'/'. $genre->id : $genre->id) }}">{{ $genre->name }}</a></li>
+                            <li><a href="{{ route('films.filter', isset($cinemaName) ? strtolower($cinemaName) .'/'. $genre->name : $genre->name) }}">{{ $genre->name }}</a></li>
                         @endforeach
                     </ul>
                 </div>

@@ -30,7 +30,13 @@ Route::get('films/edit/{id}', [
     'uses' => 'FilmController@edit',
     'as'   => 'films.edit'
 ]);
+// film filter
 Route::get('films/{slug}/{name?}', [
+    'uses' => 'FilmController@filter',
+    'as'   => 'films.filter'
+]);
+// show film
+Route::get('film/{slug}/{name?}', [
     'uses' => 'FilmController@show',
     'as'   => 'films.show'
 ])->where('slug', '[\w\d\-\_]+');
@@ -87,10 +93,6 @@ Route::get('genres', [
 Route::get('genres/edit/{id}', [
     'uses' => 'GenreController@edit',
     'as'   => 'genres.edit'
-]);
-Route::get('/genres/{slug}/{id?}', [
-    'uses' => 'GenreController@cinema',
-    'as'   => 'cinema.genre'
 ]);
 Route::put('genres/{id}', [
     'uses' => 'GenreController@update',

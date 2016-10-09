@@ -34,6 +34,7 @@
 </div>
 
     @include('partials._tarifs')
+
 <div class="wrap">
     <div class="row">
         <div class="col-lg-12">
