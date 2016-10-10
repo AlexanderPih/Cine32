@@ -276,7 +276,7 @@ class FilmController extends Controller
     {
 
         // cinema is selected first, then genre or the other way round:
-        if ($this->isCinema($slug) && !empty($name)) {
+        if ($this->isCinema($slug) && $this->isGenre($name)) {
 
             $films = Film::filmsCinemaGenre($slug, $name);
 
@@ -364,6 +364,11 @@ class FilmController extends Controller
         return $result;
     }
 
+    /**
+     * Checks if $search corresponds to a genre name
+     * @param $search
+     * @return mixed
+     */
     private function isGenre($search)
     {
         $objects = Genre::lists('name');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\History;
+use App\Team;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Session;
@@ -27,6 +28,14 @@ class AboutController extends Controller
     public function association()
     {
         return view('about.association');
+    }
+
+    public function team()
+    {
+        $teams = Team::all();
+
+        return view('about.team')
+            ->with('teams', $teams);
     }
 
     /**
@@ -76,13 +85,13 @@ class AboutController extends Controller
             if($result->success) {
                 $member = new Member();
 
-                $member->name = $request->name;
-                $member->firstname = $request->firstname;
-                $member->address = $request->address;
-                $member->city = $request->city;
-                $member->postal = $request->postal;
-                $member->phone = $request->phone;
-                $member->email = $request->email;
+                $member->name       = $request->name;
+                $member->firstname  = $request->firstname;
+                $member->address    = $request->address;
+                $member->city       = $request->city;
+                $member->postal     = $request->postal;
+                $member->phone      = $request->phone;
+                $member->email      = $request->email;
                 $member->profession = $request->profession;
 
 

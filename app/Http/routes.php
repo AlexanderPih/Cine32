@@ -181,6 +181,10 @@ Route::get('association', [
     'uses' => 'AboutController@association',
     'as'   => 'about.association'
 ]);
+Route::get('equipe', [
+    'uses' => 'AboutController@team',
+    'as'   => 'about.team'
+]);
 Route::get('member', [
     'uses' => 'AboutController@member',
     'as'   => 'about.member'
