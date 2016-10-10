@@ -185,6 +185,18 @@ Route::get('equipe', [
     'uses' => 'AboutController@team',
     'as'   => 'about.team'
 ]);
+Route::get('admin/equipe', [
+    'uses' => 'AboutController@adminteam',
+    'as'   => 'admin.team'
+]);
+Route::put('admin/equipe/{id}', [
+    'uses' => 'AboutController@teamupdate',
+    'as'   => 'team.update'
+]);
+Route::get('admin/equipe/edit/{id}', [
+    'uses' => 'AboutController@teamedit',
+    'as'   => 'team.edit'
+]);
 Route::get('member', [
     'uses' => 'AboutController@member',
     'as'   => 'about.member'

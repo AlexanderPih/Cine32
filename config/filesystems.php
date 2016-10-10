@@ -58,6 +58,11 @@ return [
             'root'   => public_path('img/posters/'),
         ],
 
+        'teamdisk'   => [
+            'driver' => 'local',
+            'root'   => public_path('img/team/'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

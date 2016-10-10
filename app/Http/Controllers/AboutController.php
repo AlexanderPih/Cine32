@@ -10,6 +10,7 @@ use Session;
 use App\Http\Requests;
 use App\Member;
 use GuzzleHttp\Client;
+use Image;
 
 class AboutController extends Controller
 {
@@ -30,12 +31,80 @@ class AboutController extends Controller
         return view('about.association');
     }
 
+    /**
+     * Load public team page
+     * @return mixed
+     */
     public function team()
     {
         $teams = Team::all();
 
         return view('about.team')
             ->with('teams', $teams);
+    }
+
+    /**
+     * Load admin team page
+     * @return mixed
+     */
+    public function adminteam()
+    {
+        $teams = Team::all();
+
+        return view('about.adminteam')
+            ->with('teams', $teams)
+            ->with('count', $this->count);
+    }
+
+    public function teamedit($id)
+    {
+        $member = Team::findOrFail($id);
+
+        return view('about.teamedit')
+            ->with('member', $member)
+            ->with('count', $this->count);
+    }
+
+    /**
+     * Update a member.
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function teamupdate(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'title' => 'required',
+            'phone' => 'sometimes',
+            'email' => 'sometimes',
+            'photo' => 'sometimes'
+        ]);
+
+        $member = Team::findOrFail($id);
+
+        $member->name = $request->name;
+        $member->title = $request->title;
+        $member->phone = $request->phone;
+        $member->email = $request->email;
+
+        if($request->hasFile('photo')) {
+            $oldfilename = $member->photo;
+            Storage::disk('memberdisk')->delete($oldfilename);
+
+            $image = $request->file('photo');
+            $filename = $member->str_slug($member->name). '.' . $image->getClientOriginalExtension();
+            $location = public_path('img/team/' . $filename);
+            Image::make($image)->sace($location);
+
+            $member->photo = $filename;
+        }
+
+        $member->save();
+
+        Session::flas('success', 'Membre modifié!');
+
+        return redirect()->route('admin.team');
     }
 
     /**

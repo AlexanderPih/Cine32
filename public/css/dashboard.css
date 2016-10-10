@@ -124,3 +124,11 @@ body {
 #youtubelink a {
     text-decoration: none;
 }
+.min-profile {
+   height: 75px;
+   width: 75px;
+}
+.profile {
+    height: 300px;
+    width: 200px;
+}

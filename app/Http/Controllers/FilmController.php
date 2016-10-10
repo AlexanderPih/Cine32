@@ -228,8 +228,6 @@ class FilmController extends Controller
         $film->year = $request->year;
         $film->trailer = $request->trailer;
 
-        $film->save();
-
         if($request->hasFile('poster')) {
             $oldfilename = $film->poster;
             Storage::disk('filmdisk')->delete($oldfilename);
@@ -241,6 +239,8 @@ class FilmController extends Controller
 
             $film->poster = $filename;
         }
+
+        $film->save();
 
         // if xxx_id list is empty, we sync with an empty array to erase all previous tags
         // if xxx_id list is not empty, we sync with the selected ids
