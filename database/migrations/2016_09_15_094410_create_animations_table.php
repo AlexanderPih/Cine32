@@ -15,6 +15,7 @@ class CreateAnimationsTable extends Migration
         Schema::create('animations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('slug');
             $table->text('body');
             $table->date('date');
             $table->string('photo');

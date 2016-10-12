@@ -13,61 +13,80 @@ class GenresTableSeeder extends Seeder
     {
         DB::table('genres')->insert([
             [
-                'name' => 'Action'
+                'name' => 'Action',
+                'slug' => 'action'
             ],
             [
-                'name' => 'Animation'
+                'name' => 'Animation',
+                'slug' => 'animation'
             ],
             [
-                'name' => 'Aventure'
+                'name' => 'Aventure',
+                'slug' => 'aventure'
             ],
             [
-                'name' => 'Comédie'
+                'name' => 'Comédie',
+                'slug' => 'comédie'
             ],
             [
-                'name' => 'Comédie dramatique'
+                'name' => 'Comédie dramatique',
+                'slug' => 'comédie-dramatique'
             ],
             [
-                'name' => 'Divers'
+                'name' => 'Divers',
+                'slug' => 'divers'
             ],
             [
-                'name' => 'Documentaire'
+                'name' => 'Documentaire',
+                'slug' => 'documentaire'
             ],
             [
-                'name' => 'Drame'
+                'name' => 'Drame',
+                'slug' => 'drame'
             ],
             [
-                'name' => 'Epouvante-horreur'
+                'name' => 'Epouvante-horreur',
+                'slug' => 'epouvante-horreur'
             ],
             [
-                'name' => 'Famille'
+                'name' => 'Famille',
+                'slug' => 'famille'
             ],
             [
-                'name' => 'Fantastique'
+                'name' => 'Fantastique',
+                'slug' => 'fantastique'
             ],
             [
-                'name' => 'Guerre'
+                'name' => 'Guerre',
+                'slug' => 'guerre'
             ],
             [
-                'name' => 'Historique'
+                'name' => 'Historique',
+                'slug' => 'historique'
             ],
             [
-                'name' => 'Musical'
+                'name' => 'Musical',
+                'slug' => 'musical'
             ],
             [
-                'name' => 'Policier'
+                'name' => 'Policier',
+                'slug' => 'policier'
             ],
             [
-                'name' => 'Romance'
+                'name' => 'Romance',
+                'slug' => 'romance'
             ],
             [
-                'name' => 'Science fiction'
+                'name' => 'Science fiction',
+                'slug' => 'science-fiction'
             ],
             [
-                'name' => 'Thriller'
+                'name' => 'Thriller',
+                'slug' => 'thirller'
             ],
             [
-                'name' => 'Western'
+                'name' => 'Western',
+                'slug' => 'western'
             ]
         ]);
     }

@@ -19,8 +19,8 @@ class CreateMembersTable extends Migration
             $table->string('address');
             $table->string('city');
             $table->integer('postal');
-            $table->integer('phone');
-            $table->string('email');
+            $table->string('phone');
+            $table->string('email')->unique();
             $table->string('profession');
             $table->date('birthday')->nullable();
             $table->boolean('treatement')->default(null);

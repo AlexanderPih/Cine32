@@ -14,6 +14,7 @@ class AnimationsTableSeeder extends Seeder
         DB::table('animations')->insert([
             [
                 'title' => 'CinEspaña',
+                'slug'  => 'cinespana',
                 'body'  => '20h-Concert de Abarrejadis 
 21h - projection de PACO DE LUCÍA, LÉGENDE DU FLAMENCO
 Bulletin de réservation en bas de page

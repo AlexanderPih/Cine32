@@ -275,7 +275,7 @@ class FilmController extends Controller
     public function filter($slug, $name = "")
     {
 
-        // cinema is selected first, then genre or the other way round:
+        // cinema and genre are selected
         if ($this->isCinema($slug) && $this->isGenre($name)) {
 
             $films = Film::filmsCinemaGenre($slug, $name);
@@ -295,7 +295,7 @@ class FilmController extends Controller
                 $films = Film::filmsGenre($id);
 
                 // only genre name is required
-                $genreName = $slug;
+                $genreName = $this->getGenreName($slug);
                 $cinemaName = null;
 
                 // $slug is cinema: cinema filter
@@ -328,12 +328,11 @@ class FilmController extends Controller
      */
     private function getGenreName($name)
     {
-        $genreName = Genre::where('name', '=', $name)->select('name')->get();
+        $genreName = Genre::where('slug', '=', $name)->select('name')->get();
         $genreName = $genreName[0]->name;
 
         return $genreName;
     }
-
 
     /**
      * Get cinema name for display on filter in view
