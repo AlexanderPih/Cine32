@@ -72,15 +72,7 @@ class CinemaController extends Controller
 
     public function update(Request $request, $id)
     {
-        /*$this->validate($request, [
-            'name' => 'required|max:255',
-            'address' => 'required',
-            'phone1' => 'sometimes|regex:#^0[1-68]([-. ]?[0-9]{2}){4}$#',
-            'phone2' => 'sometimes|regex:#^0[1-68]([-. ]?[0-9]{2}){4}$#',
-            'email' => 'required|email',
-            'screens' => 'required',
-            'lat' => 'required|regex:"/^-?([1-8]?[1-9]|[1-9]0)\.{1}\d{1,6}$/"'
-        ]);*/
+        
         $rules = [
             'name'    => ['required' , 'max:255'],
             'address' => ['required'],

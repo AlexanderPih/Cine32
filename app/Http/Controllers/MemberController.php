@@ -13,18 +13,28 @@ class MemberController extends Controller
 
     public function __construct()
     {
+        //$this->middleware('auth');
+
         $this->count = Member::getCount();
     }
 
+    /**
+     * Show all members (admin side)
+     * @return mixed
+     */
     public function index()
     {
         $members = Member::all();
 
         return view('member.index')
-            ->with('count', $this->count)
-            ->with('members', $members);
+            ->with('members', $members)
+            ->with('count', $this->count);
     }
 
+    /**
+     * Show the new members page.
+     * @return mixed
+     */
     public function newMembers()
     {
         $members = Member::where('treatement', '=', 0)->get();
@@ -34,6 +44,11 @@ class MemberController extends Controller
             ->with('count', $this->count);
     }
 
+    /**
+     * Update a member
+     * @param $id
+     * @return mixed
+     */
     public function update($id)
     {
         $member = Member::findOrFail($id);
@@ -46,6 +61,11 @@ class MemberController extends Controller
         return redirect()->route('member.new');
     }
 
+    /**
+     * Show a member
+     * @param $id
+     * @return mixed
+     */
     public function show($id)
     {
         $member = Member::findOrFail($id);
