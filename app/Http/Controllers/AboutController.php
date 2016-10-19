@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Association;
 use App\History;
+use App\Report;
 use App\Team;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Mews\Purifier\Purifier;
 use Session;
 use App\Http\Requests;
 use App\Member;
@@ -28,7 +31,75 @@ class AboutController extends Controller
      */
     public function association()
     {
-        return view('about.association');
+        $association = Association::get()->first();
+        $pdfs = Report::all()->sortByDesc('year');
+
+        return view('about.association')
+            ->with('association', $association)
+            ->with('pdfs', $pdfs);
+    }
+
+    /**
+     * Load edit page of the presentation of the association.
+     * @return mixed
+     */
+    public function editassociation()
+    {
+        $association = Association::get()->first();
+
+        return view('about.editassociation')
+            ->with('association', $association)
+            ->with('count', $this->count);
+    }
+
+    public function updateassociation(Request $request, $id)
+    {
+        $this->validate($request, [
+            'description' => 'required'
+        ]);
+
+        $association = Association::findOrFail($id);
+
+        $association->description = clean($request->description);
+        $association->timestamps = false;
+
+        $association->save();
+
+        Session::flash('success', 'Modification enregistrée!');
+
+        return redirect()->route('edit.association');
+
+    }
+
+    /**
+     * Save Annual Report pdf
+     * @param Request $request
+     * @return mixed
+     */
+    public function reportstore(Request $request)
+    {
+        $this->validate($request, [
+            'pdf' => 'mimes:pdf',
+            'year' => 'required|max:4'
+        ]);
+
+        $pdf = new Report();
+
+        $pdf->year = $request->year;
+        $pdf->timestamps = false;
+
+        if($request->hasFile('pdf')) {
+            $filename = $request->year . '.' . $request->file('pdf')->getClientOriginalExtension();
+            $request->file('pdf')->move(public_path('pdf/') , $filename);
+
+            $pdf->pdf = $filename;
+        }
+
+        $pdf->save();
+
+        Session::flash('success', "Rapport sauvegardé!");
+
+        return redirect()->route('edit.association');
     }
 
     /**

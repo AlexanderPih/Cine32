@@ -1,6 +1,6 @@
 @extends('admin')
 
-@section('title', 'Genres')
+@section('title', 'Modifier Historique')
 
 @section('customheader')
     <link rel="stylesheet" href="{{ url('css/dashboard.css') }}">

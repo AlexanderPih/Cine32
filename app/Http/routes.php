@@ -181,6 +181,18 @@ Route::get('association', [
     'uses' => 'AboutController@association',
     'as'   => 'about.association'
 ]);
+Route::get('admin/association', [
+    'uses' => 'AboutController@editassociation',
+    'as'   => 'edit.association'
+]);
+Route::put('admin/association/{id}', [
+    'uses' => 'AboutController@updateassociation',
+    'as'   => 'association.update'
+]);
+Route::post('admin/report', [
+    'uses' => 'AboutController@reportstore',
+    'as'   => 'report.store'
+]);
 Route::get('equipe', [
     'uses' => 'AboutController@team',
     'as'   => 'about.team'

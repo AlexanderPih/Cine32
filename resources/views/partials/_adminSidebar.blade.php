@@ -37,7 +37,7 @@
     <ul class="nav nav-sidebar">
         <li><a href="#collapse-apropos" data-toggle="collapse" area-control="collapse-apropos">A Propos</a>
             <ul class="collapse collapseabel" id="collapse-apropos">
-                <li><a href="#">Association</a></li>
+                <li><a href="{{ route('edit.association') }}">Association</a></li>
                 <li><a href="{{ route('history.index') }}">Historique</a></li>
                 <li><a href="{{ route('admin.team') }}">Equipe</a></li>
                 <li><a href="#">Informations</a></li>

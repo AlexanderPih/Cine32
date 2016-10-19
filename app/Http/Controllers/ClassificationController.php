@@ -17,6 +17,10 @@ class ClassificationController extends Controller
         $this->count = Member::getCount();
     }
 
+    /**
+     * Load index page.
+     * @return mixed
+     */
     public function index()
     {
         $classifications = Classification::all();
@@ -26,6 +30,11 @@ class ClassificationController extends Controller
             ->with('count', $this->count);
     }
 
+    /**
+     * Load edit page.
+     * @param $id
+     * @return mixed
+     */
     public function edit($id)
     {
         $classification = Classification::find($id);
@@ -35,6 +44,12 @@ class ClassificationController extends Controller
             ->with('count', $this->count);
     }
 
+    /**
+     * Update Director
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
     public function update(Request $request, $id)
     {
         $this->validate($request, [

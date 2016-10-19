@@ -64,6 +64,7 @@
                         <tr>
                             <th>Année:</th>
                             <th>Texte:</th>
+                            <th>Actions:</th>
                         </tr>
                         </thead>
                         <tbody>

@@ -72,6 +72,7 @@ class GenreController extends Controller
         $genre = Genre::find($id);
 
         $genre->name = $request->name;
+        $genre->slug = str_slug($request->name);
 
         $genre->save();
 
