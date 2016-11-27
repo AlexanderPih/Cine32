@@ -48,7 +48,7 @@ class Film extends Model
     {
         $cinema_id = Film::getCinemaId($slug);
         $id = Film::getGenreId($name);
-
+    
         return DB::table('films')
             ->join('cinema_film', 'films.id', '=', 'cinema_film.film_id')
             ->join('film_genre', 'films.id', '=', 'film_genre.film_id')
@@ -126,7 +126,7 @@ class Film extends Model
      */
     public static function getGenreId($name)
     {
-        $genreId = Genre::where('name', '=', $name)->select('id')->get();
+        $genreId = Genre::where('slug', '=', $name)->select('id')->get();
         return $genreId[0]->id;
     }
 }

@@ -104,8 +104,6 @@ class FilmController extends Controller
 
         }
 
-
-
         return view('films.show')
             ->with('film', $film)
             ->with('showtimes', $showtimes);
@@ -276,20 +274,22 @@ class FilmController extends Controller
     {
 
         // cinema and genre are selected
-        if ($this->isCinema($slug) && $this->isGenre($name)) {
+        //if ($this->isCinema($slug) && $this->isGenre($name)) {
+        if ($this->isItIn("Cinema", $slug) && $this->isItIn("Genre", $name)) {
 
             $films = Film::filmsCinemaGenre($slug, $name);
 
             // get the names for display on filter
-            $genreName = $name;
+            $genreName = $this->getGenreName($name);
             $cinemaName = $this->getCinemaName($slug);
+            $genreSlug = $name;
 
 
         // $slug is given, $name is empty, $slug can be cinema or genre
         } elseif ($slug && empty($name)) {
 
             // if $slag is genre: genre filter
-            if ($this->isGenre($slug)) {
+            if ($this->isItIn("Genre", $slug)) {
 
                 $id = Film::getGenreId($slug);
                 $films = Film::filmsGenre($id);
@@ -297,14 +297,17 @@ class FilmController extends Controller
                 // only genre name is required
                 $genreName = $this->getGenreName($slug);
                 $cinemaName = null;
+                $genreSlug = $slug;
 
                 // $slug is cinema: cinema filter
             } else {
+
                 $films = Film::filmsCinema($slug);
 
                 // only cinema name is required
                 $cinemaName = $this->getCinemaName($slug);
                 $genreName = null;
+                $genreSlug = null;
             }
         }
 
@@ -316,6 +319,7 @@ class FilmController extends Controller
             ->with('films', $films)
             ->with('cinemas', $cinemas)
             ->with('genres', $genres)
+            ->with('genreSlug', $genreSlug)
             ->with('genreName', $genreName)
             ->with('cinemaName', $cinemaName);
     }
@@ -348,34 +352,20 @@ class FilmController extends Controller
     }
 
     /**
-     * Checks if $search (which is a slug) corresponds to a cinema slug.
-     *
-     * @param $search
-     * @return true or false
-     */
-    private function isCinema($search)
-    {
-        $objects = Cinema::lists('slug');
-        $array = $objects->toArray();
-
-        $result = in_array($search, $array);
-
-        return $result;
-    }
-
-    /**
-     * Checks if $search corresponds to a genre name
-     * @param $search
+     * Searches for a slug in a given DB.
+     * @param $className
+     * @param $searchfor
      * @return mixed
      */
-    private function isGenre($search)
+    private function isItIn($className, $searchfor)
     {
-        $objects = Genre::lists('name');
-        $array = $objects->toArray();
+        $class = "App\\".$className;
+        $searchIn = $class::lists('slug');
+        $array = $searchIn->toArray();
 
-        $result = in_array($search, $array);
+        $result = in_array($searchfor, $array);
 
         return $result;
     }
-
+    
 }
