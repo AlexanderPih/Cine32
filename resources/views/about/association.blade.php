@@ -30,6 +30,7 @@
                                 <a href="{{ asset('pdf/' . $pdf->pdf ) }}"><img src="{{ url('img/pdf.png') }}" alt=""></a><br>{{ $pdf->year }}
                             </li>
                         @endforeach
+
                     </ul>
 
             </div>

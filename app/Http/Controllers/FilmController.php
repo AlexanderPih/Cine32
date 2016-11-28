@@ -77,7 +77,7 @@ class FilmController extends Controller
         */
 
         // Check if $slug is the slug of cinema
-        $isCinema = $this->isCinema($slug);
+        $isCinema = $this->isItIn("Cinema", $slug);
 
         // if $slug is not the slug of cinema, then there is no cinema->slug passed through.
         // Therefore, show film with all cinema screenings:
@@ -332,8 +332,8 @@ class FilmController extends Controller
      */
     private function getGenreName($name)
     {
-        $genreName = Genre::where('slug', '=', $name)->select('name')->get();
-        $genreName = $genreName[0]->name;
+        $genreName = Genre::where('slug', '=', $name)->select('name')->first();
+        $genreName = $genreName->name;
 
         return $genreName;
     }
@@ -345,8 +345,8 @@ class FilmController extends Controller
      */
     private function getCinemaName($slug)
     {
-        $cinemaName = Cinema::where('slug', '=', $slug)->select('name')->get();
-        $cinemaName = $cinemaName[0]->name;
+        $cinemaName = Cinema::where('slug', '=', $slug)->select('name')->first();
+        $cinemaName = $cinemaName->name;
 
         return $cinemaName;
     }
